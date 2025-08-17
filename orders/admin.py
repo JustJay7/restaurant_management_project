@@ -4,4 +4,4 @@ eeeeeee
 admin.site.register(Order)
 sites
 from
-from django
+from django import register
