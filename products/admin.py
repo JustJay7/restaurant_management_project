@@ -1,14 +1,18 @@
 from django.contrib import admin
-from .models import *
 from .models import Item, Menu
 
-
-# Custom Admins
+# Custom admin for Item model
+@admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ['item_name','item_price','created_at']
+    list_display = ('item_name', 'item_price', 'created_at')
+    search_fields = ('item_name',)
+    list_filter = ('created_at',)
+    ordering = ('-created_at',)
 
-
-# Register your models here.
-admin.site.register(Item,ItemAdmin)
-admin.site.register(Item)
-admin.site.register(Menu)
+# Custom admin for Menu model
+@admin.register(Menu)
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ('menu_name', 'created_at')
+    search_fields = ('menu_name',)
+    list_filter = ('created_at',)
+    ordering = ('-created_at',)
